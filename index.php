@@ -1,31 +1,71 @@
+<?php
+include 'proses.php';
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>Form Sederhana</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f4f4f4;
+            text-align: center;
+        }
+        .container {
+            width: 400px;
+            margin: 50px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        input, textarea {
+            width: 90%;
+            padding: 10px;
+            margin: 5px 0;
+        }
+        button {
+            padding: 10px 20px;
+            background: blue;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        .hasil {
+            margin-top: 20px;
+            text-align: left;
+        }
+    </style>
 </head>
 <body>
 
-<h2>Form Input</h2>
+<h2>Membuat Form Sederhana</h2>
 
-<form method="POST">
-    Nama: <input type="text" name="nama"><br><br>
-    No HP: <input type="text" name="hp"><br><br>
-    Alamat: <textarea name="alamat"></textarea><br><br>
-    <button type="submit">Submit</button>
-</form>
+<div class="container">
+    <form method="POST">
+        <input type="text" name="firstName" placeholder="Firstname" required><br>
+        <input type="text" name="lastName" placeholder="Lastname" required><br>
+        <input type="text" name="phone" placeholder="Phone Number" required><br>
+        <textarea name="address" placeholder="Address" required></textarea><br>
+        <button type="submit">Submit</button>
+    </form>
 
-<?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nama = $_POST['nama'];
-    $hp = $_POST['hp'];
-    $alamat = $_POST['alamat'];
+    <div class="hasil">
+        <?php
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $data = new DataDiri(
+                $_POST['firstName'],
+                $_POST['lastName'],
+                $_POST['phone'],
+                $_POST['address']
+            );
 
-    echo "<h3>Hasil Input:</h3>";
-    echo "Nama: $nama <br>";
-    echo "HP: $hp <br>";
-    echo "Alamat: $alamat <br>";
-}
-?>
+            echo $data->tampilkan();
+        }
+        ?>
+    </div>
+</div>
 
 </body>
 </html>
