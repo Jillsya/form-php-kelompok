@@ -1,7 +1,3 @@
-<?php
-include 'proses.php';
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +5,7 @@ include 'proses.php';
     <style>
         body {
             font-family: Arial;
-            background: #f4f4f4;
+            background: aqua;
             text-align: center;
         }
         .container {
@@ -41,9 +37,8 @@ include 'proses.php';
 <body>
 
 <h2>Membuat Form Sederhana</h2>
-
 <div class="container">
-    <form method="POST">
+    <form method="POST" action="proses.php">
         <input type="text" name="firstName" placeholder="Firstname" required><br>
         <input type="text" name="lastName" placeholder="Lastname" required><br>
         <input type="text" name="phone" placeholder="Phone Number" required><br>
@@ -51,19 +46,8 @@ include 'proses.php';
         <button type="submit">Submit</button>
     </form>
 
-    <div class="hasil">
-        <?php
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $data = new DataDiri(
-                $_POST['firstName'],
-                $_POST['lastName'],
-                $_POST['phone'],
-                $_POST['address']
-            );
-
-            echo $data->tampilkan();
-        }
-        ?>
+        <div class="hasil">
+        <!-- Hasil ditampilkan di proses.php setelah submit -->
     </div>
 </div>
 
